@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="55dp"
+    android:paddingBottom="55dp"
+    tools:context=".fragmentdrawer.FragDrawMain">
+
+    <!--<FrameLayout
+        android:id="@+id/idCtrlFrmDrawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" >
+    </FrameLayout>-->
+    <TextView
+        android:id="@+id/tvCotizaciones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Estoy en HOME o MAIN pero del DRAWER"
+        android:textSize="40sp"/>
+
+</LinearLayout>

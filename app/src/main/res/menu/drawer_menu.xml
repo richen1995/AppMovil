@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"  >
+
+    <!--<group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mHome"
+            android:icon="@drawable/ic_home"
+            android:title="@string/drw_home"/>
+
+        <item
+            android:id="@+id/mHorario"
+            android:icon="@drawable/ic_group"
+            android:title="Horario">
+        </item>
+        <item
+            android:id="@+id/mPedidos"
+            android:icon="@drawable/ic_group"
+            android:title="Pedidos">
+        </item>
+        <item
+            android:id="@+id/mVisitas"
+            android:icon="@drawable/ic_group"
+            android:title="Visitas">
+        </item>
+        <item
+            android:id="@+id/mCotizaciones"
+            android:icon="@drawable/ic_group"
+            android:title="Cotizaciones">
+        </item>
+    </group>
+
+    <item android:title="Personal">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/mMisDatos"
+                    android:icon="@drawable/ic_home"
+                    android:title="Mis Datos">
+                </item>
+                <item
+                    android:id="@+id/mContactos"
+                    android:icon="@drawable/ic_group"
+                    android:title="Contactos">
+                </item>
+            </group>
+        </menu>
+    </item>-->
+
+
+    <!--Tutorial___https://www.youtube.com/watch?v=0EIU5R_zHUc&t=0s-->
+
+    <item android:title="Actividades">
+        <menu>
+            <item
+                android:id="@+id/mHome"
+                android:icon="@drawable/ic_home"
+                android:title="@string/drw_home"/>
+
+            <item
+                android:id="@+id/mHorario"
+                android:icon="@drawable/ic_group"
+                android:title="Horario">
+            </item>
+            <item
+                android:id="@+id/mPedidos"
+                android:icon="@drawable/ic_group"
+                android:title="Pedidos">
+            </item>
+            <item
+                android:id="@+id/mVisitas"
+                android:icon="@drawable/ic_group"
+                android:title="Visitas">
+            </item>
+            <item
+                android:id="@+id/mCotizaciones"
+                android:icon="@drawable/ic_group"
+                android:title="Cotizaciones">
+            </item>
+        </menu>
+    </item>
+    <item
+        android:title="Personal">
+        <menu>
+            <item
+                android:id="@+id/mMisDatos"
+                android:icon="@drawable/ic_home"
+                android:title="Mis Datos">
+            </item>
+            <item
+                android:id="@+id/mContactos"
+                android:icon="@drawable/ic_group"
+                android:title="Contactos">
+            </item>
+        </menu>
+    </item>
+</menu>

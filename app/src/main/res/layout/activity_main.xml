@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation = "vertical"
+    android:background="@color/primary_dark"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:srcCompat="@mipmap/logo"
+        android:layout_weight="50"/>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/usuario"
+        android:layout_weight="9"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:drawablePadding="10dp"
+        android:layout_marginBottom="15dp"
+        android:drawableLeft="@mipmap/icon_user"/>
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:layout_weight="9"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@mipmap/candado"
+        android:layout_marginBottom="20dp"/>
+
+
+    <Button
+        android:id="@+id/BtnActPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="SigActPrincipal"
+        android:text="@string/btnsession" />
+
+    <Button
+        android:id="@+id/BtnActRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="SigRegistro"
+        android:text="@string/btningresar" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registrar"
+        android:gravity="center"/>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="20"
+        android:gravity="center|top">
+
+        <ImageButton
+            android:id="@+id/imageButtonFcebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/facebook"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonGmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/gmail" />
+    </LinearLayout>-->
+    <TextView
+        android:id="@+id/tvPrueba"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="prub"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/textViewRecordPasword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Olvide mi Contraseña.. Click Aqui."
+        android:gravity="center"/>
+
+</LinearLayout>
