@@ -21,6 +21,13 @@
         layout="@layout/content_main">
     </include>
 
+    <!--Esto es una prueba del menu horizontal-->
+    <include
+        layout="@layout/horizontal_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </include>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width = "match_parent"

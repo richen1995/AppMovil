@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius ="3dp"
-    app:cardElevation ="3dp"
-    app:cardUseCompatPadding="true">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,36 +10,35 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imagenMaterial"
+            android:id="@+id/imagenProfesional"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_launcher_background">
         </ImageView>
 
         <TextView
-            android:id="@+id/textViewNombre"
+            android:id="@+id/textViewNombreProfesional"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre de la Persona"
+            android:text="Nombre del Profecional"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/imagenMaterial"
-            android:layout_toEndOf="@id/imagenMaterial"
+            android:layout_toRightOf="@id/imagenProfesional"
+            android:layout_toEndOf="@id/imagenProfesional"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
 
         <TextView
-            android:id="@+id/textViewMarca"
+            android:id="@+id/textViewProfeccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre de la Persona"
+            android:text="Profeccion"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_below="@id/textViewNombre"
-            android:layout_toEndOf="@id/imagenMaterial"
+            android:layout_below="@id/textViewNombreProfesional"
+            android:layout_toEndOf="@id/imagenProfesional"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
 
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

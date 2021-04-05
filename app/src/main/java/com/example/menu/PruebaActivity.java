@@ -315,9 +315,9 @@ PruebaActivity extends AppCompatActivity {
             }
 
         });
-        String d = cid[0] + "";
+        /*String d = cid[0] + "";
         String cdcod = cid[0].getCidCodigo();
-        String cdcity = cid[0].getCidNombre();
+        String cdcity = cid[0].getCidNombre();*/
 
 
 

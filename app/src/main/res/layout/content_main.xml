@@ -13,6 +13,12 @@
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"  />
 
+    <!--<include
+        layout="@layout/horizontal_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></include>-->
+
     <!--esto es una prueba-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -29,7 +35,7 @@
         android:layout_alignParentLeft = "true"
         android:layout_alignParentRight = "true"
         app:labelVisibilityMode="selected"
-        style = "@style/BottomNavigation"/>
-
+        style = "@style/BottomNavigation"
+        android:visibility="visible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

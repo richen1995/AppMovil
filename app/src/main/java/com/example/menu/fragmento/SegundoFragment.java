@@ -3,57 +3,45 @@ package com.example.menu.fragmento;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.menu.R;
+import com.example.menu.RestEngine;
+import com.example.menu.adaptadores.AdapterProfesional;
+import com.example.menu.entidades.ApiService;
+import com.example.menu.entidades.Profesional;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SegundoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.Array;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class SegundoFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    AdapterProfesional adapterProfesional;
+    RecyclerView recyclerviewProfecionales;
+    ArrayList<Profesional> listaProfecionales;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ApiService apiService;
 
     public SegundoFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SegundoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SegundoFragment newInstance(String param1, String param2) {
-        SegundoFragment fragment = new SegundoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -61,6 +49,38 @@ public class SegundoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_segundo, container, false);
+        View view = inflater.inflate(R.layout.fragment_segundo, container, false);
+        recyclerviewProfecionales = view.findViewById(R.id.recyclerViewPofesionales);
+        listaProfecionales = new ArrayList<>();
+        //return inflater.inflate(R.layout.fragment_segundo, container, false);
+
+        cargarLista();
+        return view;
+    }
+
+    public void cargarLista(){
+        apiService = RestEngine.getRestEngine().create(ApiService.class);
+        Call<ArrayList<Profesional>> call = apiService.getProfesionales();
+        call.enqueue(new Callback<ArrayList<Profesional>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Profesional>> call, Response<ArrayList<Profesional>> response) {
+                if(response.isSuccessful()){
+                    ArrayList<Profesional> listaProfesional = response.body();
+                    mostrarDatos(listaProfesional);
+                    Toast.makeText(getContext(),"Coorrecta xtraccion del Array Profecional",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Profesional>> call, Throwable t) {
+                Toast.makeText(getContext(), "Fallo la extraccion de array Profeccional", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void mostrarDatos(ArrayList<Profesional> listaProfecional){
+        recyclerviewProfecionales.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapterProfesional = new AdapterProfesional(getContext(),listaProfecional);
+        recyclerviewProfecionales.setAdapter(adapterProfesional);
     }
 }

@@ -15,6 +15,9 @@ import androidx.navigation.Navigation;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,14 +25,16 @@ import com.example.menu.entidades.ComunicaFragDetalle;
 import com.example.menu.entidades.Material;
 import com.example.menu.fragmentdrawer.FragCotizaciones;
 import com.example.menu.fragmentdrawer.FragDrawMain;
+import com.example.menu.fragmento.CableadoFragment;
 import com.example.menu.fragmento.FragDetalleMaterial;
 import com.example.menu.fragmento.PrimerFragment;
 import com.example.menu.fragmento.SegundoFragment;
 import com.example.menu.fragmento.TercerFragment;
+import com.example.menu.fragmento.VideoVigilanciaFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class    PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ComunicaFragDetalle {
+public class  PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ComunicaFragDetalle, View.OnClickListener {
     /*llamado al DRAWER o Menu desplegable https://www.youtube.com/watch?v=0EIU5R_zHUc&t=1208s*/
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -37,13 +42,17 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
     NavigationView navigationView;
     /*.............................................*/
 
-    /*///////Esto es un Prueba//////////*/
-        //private NavController navController;
-    /*//////////////////////////////////*/
+    /*----Inicializando Bottom Navigation para poder mostrarlo u ocultarlo----*/
+        BottomNavigationView navigation;
+    /*------------------------------------*/
 
     /*variables para cargar el Fragment del menu Drawer -- tuto: https://www.youtube.com/watch?v=0EIU5R_zHUc&t=1208s*/
         FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction;
+    /*--------------------------------------------------------------------------------------------------------------*/
+
+    /*----------------------------------abrir fragment a partir de horiontal-menu-------------------------------------*/
+       Button btn;//prueba para abrir fragment
     /*--------------------------------------------------------------------------------------------------------------*/
 
     /*variable del Fragment FragDetalleMaterial para acceder a ese fragment*/
@@ -53,8 +62,17 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
     PrimerFragment primerFragment = new PrimerFragment();
     SegundoFragment segundoFragment = new SegundoFragment();
     TercerFragment tercerFragment = new TercerFragment();
+    FragCotizaciones fragCotizaciones = new FragCotizaciones();
     /*______________________________________*/
     TextView tvDatos;
+
+    //esto es una prueba
+    HorizontalScrollView horizontalScrollView;
+
+    //------Instancias de los fragmnts q perteneces al menu Horizontal Scroll View---------//
+    //PrimerFragment primerFragment = new PrimerFragment();
+        VideoVigilanciaFragment videoVigilanciaFragment = new VideoVigilanciaFragment();
+        CableadoFragment cableadoFragment = new CableadoFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +84,8 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.idDrawerLayout);
         navigationView = findViewById(R.id.nav_view);
+
+        horizontalScrollView = findViewById(R.id.horizontalScrollView);//inicializando el menu horizontal par habilitarlo y desabilitarlo
 
         //-----establecer evento onclik al NavigationView -- tuto: https://www.youtube.com/watch?v=0EIU5R_zHUc&t=1208s
         navigationView.setNavigationItemSelectedListener(this);
@@ -83,11 +103,11 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
             fragmentTransaction.commit();*/
         /*--------------------------------------------------------------------------------------------------------------*/
 
-        /*///////Esto es un Prueba//////////*/
-        //navController = Navigation.findNavController(this, R.id.frame_container);
-        /*//////////////////////////////////*/
+        /*----Inicializar el view del layout Bottom View----*/
+            //btnNavView = (BottomNavigationView)
+        /*--------------------------------------------------*/
 
-        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+         navigation = findViewById(R.id.bottom_navigation);
          navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             //----pasar datos Ativity a Activity con fragments-------https://es.stackoverflow.com/questions/67985/pasar-datos-desde-activity-a-fragments----
                 Bundle bundle = getIntent().getExtras();
@@ -98,8 +118,31 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
             //-----------------------------------------------------------------------
 
         loadFragment(primerFragment);
-        /*______________________________________*/
+        /*_____________________________________*/
 
+        /*------Provando el abrir fragment a partir del scroll view--------*/
+        //probando el click en el horizontal
+         /*btn = findViewById(R.id.button1);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frame_drawer, new VideoVigilanciaFragment());
+                    fragmentTransaction.commit();
+                }
+            });*/
+        /*-----------------------------------------------------------------*/
+
+        /*----------declarando e inicializando el click en el horizontal-----------*/
+        Button btnTodos     = findViewById(R.id.btn_todos);
+        Button btnCamaras   = findViewById(R.id.btn_camaras);
+        Button btnCableado  = findViewById(R.id.btn_cableado);
+
+        btnTodos.setOnClickListener(this);
+        btnCamaras.setOnClickListener(this);
+        btnCableado.setOnClickListener(this);
+        /*-------------------------------------------------------------------------*/
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -108,11 +151,14 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
             switch(item.getItemId()){
                 case R.id.firstFragment:
                     loadFragment(primerFragment);
+                    horizontalScrollView.setVisibility(View.VISIBLE);//haciedo visible el menu inicialmente oculto
                     return true;
                 case R.id.secondFragment:
                     loadFragment(segundoFragment);
+                    horizontalScrollView.setVisibility(View.GONE);//ocultando menu horizontal
                     return true;
                 case R.id.thirdFragment:
+                    horizontalScrollView.setVisibility(View.GONE);//ocultando menu horizontal
                     loadFragment(tercerFragment);
                     return true;
             }
@@ -137,34 +183,36 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
         drawerLayout.closeDrawer(GravityCompat.START);
         if(item.getItemId() == R.id.mHome){
           /*Codigo para abrir un nuevo Fragment*/
-            fragmentManager = getSupportFragmentManager();
+            /*fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_drawer, new FragDrawMain());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.frame_drawer, new PrimerFragment());
+            fragmentTransaction.commit();*/
           /*--------------------------------*/
             /*esto es una prueba*/
             //loadFragment(tercerFragment);
             //return true;
             /*------------------*/
 
-            /*--------------------------------*/
-            /*esto es otra prueba*/
-            //loadFragment(tercerFragment);
-            //return true;
-            /*------------------*/
-
+            loadFragment(primerFragment);
+            navigation.setVisibility(View.VISIBLE);
         }
         if(item.getItemId() == R.id.mCotizaciones){
             /*Codigo para abrir un nuevo Fragment*/
-            fragmentManager = getSupportFragmentManager();
+            /*fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frame_drawer, new FragCotizaciones());
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
             /*--------------------------------*/
 
             /*esto es una prueba*/
             //loadFragment(segundoFragment);
             //return true;
+            /*------------------*/
+
+            /*esto es otra prueba para ocltar o ver el Bottom Navigation*/
+            loadFragment(fragCotizaciones);
+            navigation.setVisibility(View.GONE);
+            horizontalScrollView.setVisibility(View.GONE);//ocultando menu horizontal
             /*------------------*/
         }
         return false;
@@ -201,5 +249,23 @@ public class    PrincipalActivity extends AppCompatActivity implements Navigatio
         fragmentTransaction.replace(R.id.frame_drawer, fragDetalleMaterial);
         fragmentTransaction.addToBackStack(null);//permit recupear el fragmento anterior en este caso es el fragment PrimerFragment
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btn_todos:
+                loadFragment(primerFragment);
+                horizontalScrollView.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btn_camaras:
+                loadFragment(videoVigilanciaFragment);
+                //horizontalScrollView.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btn_cableado:
+                loadFragment(cableadoFragment);
+                //horizontalScrollView.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 }

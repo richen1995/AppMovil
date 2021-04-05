@@ -14,5 +14,13 @@
     <string name="open">open</string>
     <string name="close">close</string>
 
+    <!--HorizontalScrollView-->
+    <string name="hsv_menu_todos">Todos</string>
+    <string name="hsv_menu_camaras">Video Vigilancia</string>
+    <string name="hsv_menu_acceso">Control de Accesos</string>
+    <string name="hsv_menu_cerco">Cercas Eléctricas</string>
+    <string name="hsv_menu_cableado">Cableado Estructurado</string>
+    <string name="hsv_menu_incendios">Detección de Incendios</string>
+    <string name="hsv_menu_alarmas">Sistema de Alarmas</string>
 
 </resources>

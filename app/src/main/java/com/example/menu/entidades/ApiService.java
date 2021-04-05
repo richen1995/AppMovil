@@ -23,6 +23,9 @@ public interface  ApiService {
     @GET("ciudad/{codigo}")
     Call<CidCodigo> getCiudad(@NonNull @Path("codigo") String codigo);
 
+    @GET("profesional")
+    Call<ArrayList<Profesional>> getProfesionales();
+
     @POST("servicio")
     Call<Servicio> setServicio (@Body Servicio servicio);
 
@@ -31,6 +34,8 @@ public interface  ApiService {
 
     @POST("usuario")
     Call<Usuario> setUsuario (@Body Usuario usuario);
+
+
 
 
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="55dp">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/horizontalScrollView">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_todos"
+                android:textSize="11sp"
+                android:id="@+id/btn_todos" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_camaras"
+                android:textSize="11sp"
+                android:id="@+id/btn_camaras" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_cableado"
+                android:textSize="11sp"
+                android:id="@+id/btn_cableado" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_cerco"
+                android:textSize="11sp"
+                android:id="@+id/btn_cercas" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_alarmas"
+                android:textSize="11sp"
+                android:id="@+id/btn_alarmas" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_incendios"
+                android:textSize="11sp"
+                android:id="@+id/btn_incendios" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hsv_menu_acceso"
+                android:textSize="11sp"
+                android:id="@+id/btn_acceso" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>

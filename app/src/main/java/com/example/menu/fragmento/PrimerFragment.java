@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +37,7 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
+ * create an instance of this  fragment.
  */
 public class PrimerFragment extends Fragment {
 
@@ -43,6 +47,11 @@ public class PrimerFragment extends Fragment {
     ArrayList<Material> listaMateriales;
     /*-----------------------------------*/
 
+    /*----------------------------------abrir fragment a partir de horiontal-menu-------------------------------------*/
+    //FragmentManager fragmentManager;
+    //FragmentTransaction fragmentTransaction;
+    /*--------------------------------------------------------------------------------------------------------------*/
+
     ApiService apiService;
     //private String cedula;
     //TextView tvDatos;
@@ -50,7 +59,13 @@ public class PrimerFragment extends Fragment {
     //Referencias PARA COMUNICAR FRAGMENTS DETALLE TUTO:  youtube.com/watch?v=vC8C89MsqlI
         Activity actividad;
         ComunicaFragDetalle comunicaFragDetalle;
+    //--Instancias de los fragmnts q perteneces al menu Horizontal Scroll View
+        //PrimerFragment primerFragment = new PrimerFragment();
+        VideoVigilanciaFragment videoVigilanciaFragment = new VideoVigilanciaFragment();
+        CableadoFragment cableadoFragment = new CableadoFragment();
 
+        // esto es una prueba
+        HorizontalScrollView horizontalScrollView;
     public PrimerFragment() {
         // Required empty public constructor
     }
@@ -66,9 +81,7 @@ public class PrimerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Toast.makeText(getContext(), "El score es: "+ getArguments().getString("CEDULA"), Toast.LENGTH_SHORT).show();
 
@@ -80,6 +93,32 @@ public class PrimerFragment extends Fragment {
             cargarLista();
         //mostrar datos
             //mostrarDatos();
+
+        //probando el click en el horizontal
+        //Button btnTodos     = (Button) view.findViewById(R.id.btn_todos);
+        //Button btnCamaras   = (Button) view.findViewById(R.id.btn_camaras);
+        //Button btnCableado  = (Button) view.findViewById(R.id.btn_cableado);
+        /*Button btnCercas    = view.findViewById(R.id.btn_cercas);
+        Button btnAlarmas   = view.findViewById(R.id.btn_alarmas);
+        Button btnIncendios = view.findViewById(R.id.btn_incendios);
+        Button btnAcceso    = view.findViewById(R.id.btn_acceso);*/
+
+        //btnTodos.setOnClickListener(this);
+        //btnCamaras.setOnClickListener(this);
+        //btnCableado.setOnClickListener(this);
+        /*btnCercas.setOnClickListener(this);
+        btnAlarmas.setOnClickListener(this);
+        btnIncendios.setOnClickListener(this);
+        btnAcceso.setOnClickListener(this);*/
+        /*btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_drawer, new VideoVigilanciaFragment());
+                fragmentTransaction.commit();
+            }
+        });*/
 
 
         return view;
@@ -113,12 +152,11 @@ public class PrimerFragment extends Fragment {
         });
     }
 
-
     // private void mostrarDatos() {
     private void mostrarDatos(ArrayList<Material> listaMaterial) {
         recyclerViewMateriales.setLayoutManager(new LinearLayoutManager(getContext()));
         //adapterMaterial = new AdapterMaterial(getContext(),listaMateriales);
-        adapterMaterial = new AdapterMaterial(getContext(),listaMaterial);
+        adapterMaterial = new AdapterMaterial(getContext(),listaMaterial); //esta invocando a el adapter y enviando el objeto array vcon los datos para su representacion en el reycler
         recyclerViewMateriales.setAdapter(adapterMaterial);
 
         //mostrar mensaje luego de dar click en un item
@@ -131,9 +169,7 @@ public class PrimerFragment extends Fragment {
                     comunicaFragDetalle.enviarOBJMaterial(listaMaterial.get(recyclerViewMateriales.getChildAdapterPosition(v)));
                 }
             });
-
         listaMateriales =  listaMaterial; //esto es una prueba para ver si se almacena un objSON
-
     }
 
     /*2 metodo para llamer a fragmrnt detalle de Material*/
@@ -160,4 +196,28 @@ public class PrimerFragment extends Fragment {
         tvDatos = findViewById(R.id.tvDatos);
         tvDatos.setText("" + cedula + " " + email + " " + password);*/
     }
+
+    //@Override
+    //public void onClick(View v) {
+    //    switch(v.getId()){
+ /*           case R.id.btn_todos:
+                loadFragment(primerFragment);
+                break;*/
+/*            case R.id.btn_camaras:
+                loadFragment(videoVigilanciaFragment);
+                //horizontalScrollView.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btn_cableado:
+                loadFragment(cableadoFragment);
+                //horizontalScrollView.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    public void loadFragment(Fragment fragment){
+        fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_drawer, fragment);
+        fragmentTransaction.commit();
+    }*/
 }
